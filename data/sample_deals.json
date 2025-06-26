@@ -1,0 +1,26 @@
+[
+    {
+      "id": 101,
+      "product": "Cloud License",
+      "price": 1000,
+      "cost": 850,
+      "discount": 15,
+      "customer_type": "Partner"
+    },
+    {
+      "id": 102,
+      "product": "Premium Support",
+      "price": 500,
+      "cost": 480,
+      "discount": 25,
+      "customer_type": "Direct"
+    },
+    {
+      "id": 103,
+      "product": "Annual Subscription",
+      "price": 1200,
+      "cost": 900,
+      "discount": 10,
+      "customer_type": "Reseller"
+    }
+  ]
