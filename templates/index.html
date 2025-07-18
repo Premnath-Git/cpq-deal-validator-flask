@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CPQ Deal Validator</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        textarea { width: 100%; height: 150px; }
+        button { padding: 10px 20px; margin-top: 10px; }
+        pre { background: #f4f4f4; padding: 10px; }
+    </style>
+</head>
+<body>
+    <h1>CPQ Deal Validator</h1>
+    <p>Paste your deals JSON below:</p>
+    <textarea id="dealsInput" placeholder='[{"id": 1, "price": 100}, {"id": 2, "price": -50}]'></textarea><br>
+    <button onclick="validateDeals()">Validate Deals</button>
+
+    <h2>Validation Results:</h2>
+    <pre id="results"></pre>
+
+    <script>
+        function validateDeals() {
+            const dealsData = document.getElementById('dealsInput').value;
+            let deals;
+            try {
+                deals = JSON.parse(dealsData);
+            } catch (err) {
+                document.getElementById('results').innerText = "Invalid JSON input!";
+                return;
+            }
+
+            fetch('/validate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(deals)
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('results').innerText = JSON.stringify(data, null, 2);
+            })
+            .catch(error => {
+                document.getElementById('results').innerText = "Error: " + error;
+            });
+        }
+    </script>
+</body>
+</html>
+    
